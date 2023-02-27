@@ -24,7 +24,7 @@ export function Input({type = 'Primary', ...rest}: Props) {
     marginBottom: 16,
     borderColor: theme.COLORS.SHAPE,
     borderWidth: 1,
-        // fontFamily: theme.FONTS.TEXT,
+    fontFamily: theme.FONTS.TEXT,
     color: type === 'Primary' ? theme.COLORS.SECONDARY_900 : theme.COLORS.TITLE,
 }}
     placeholderTextColor={type === 'Primary' ? theme.COLORS.SECONDARY_900 : theme.COLORS.PRIMARY_50}

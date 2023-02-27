@@ -5,6 +5,6 @@ export const styles = StyleSheet.create({
     title: {
         color: theme.COLORS.TITLE,
         fontSize: 14,
-        // fontFamily: theme.FONTS.TEXT,
+        fontFamily: theme.FONTS.TEXT,
     },
 })

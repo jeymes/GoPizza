@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
         marginBottom: 24,
         alignSelf: 'flex-start',
         color: theme.COLORS.TITLE,
-        // fontFamily: theme.FONTS.TITLE,
+        fontFamily: theme.FONTS.TITLE,
     },
     Brand: {
         resizeMode: 'contain',
@@ -28,6 +28,6 @@ export const styles = StyleSheet.create({
     forgotPassowrdLabel: {
         alignSelf: 'flex-start',
         color: theme.COLORS.TITLE,
-        // fontFamily: theme.FONTS.TEXT,
+        fontFamily: theme.FONTS.TEXT,
     }
 });
