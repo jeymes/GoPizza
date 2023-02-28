@@ -1,15 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {styles} from './styles';
 import LinearGradient from 'react-native-linear-gradient';
 import theme from '../../theme';
 import {Input} from '../../components/Input';
 import {Button} from '../../components/Button';
-import {Image, KeyboardAvoidingView, Platform, ScrollView, Text, TouchableOpacity} from 'react-native'
+import {Image, KeyboardAvoidingView, Platform, ScrollView, Text, TouchableOpacity, ActivityIndicator} from 'react-native'
 import {getBottomSpace} from 'react-native-iphone-x-helper'
 
 import brandImg from '../../assets/brand.png';
 
+import { useAuth } from '../../hooks/auth';
+
 export function SignIn() {
+    const [email, setEmail] = useState('');
+    const [ password, setPassword] = useState('')
+    const { signIn, signOut, forgotPassword, isLoading } = useAuth();
+
+    function handleSignIn(){
+        signIn(email, password)
+    }
+    function handleforgotPassword(){
+        forgotPassword(email)
+    }
+
     return (
         <LinearGradient 
         colors={theme.COLORS.GRADIENT}
@@ -41,6 +54,7 @@ export function SignIn() {
                         type='segundary'
                         autoCorrect={false}
                         autoCapitalize='none'
+                        onChangeText={setEmail}
                         />
 
                     <Input 
@@ -49,9 +63,11 @@ export function SignIn() {
                         autoCorrect={false}
                         autoCapitalize='none'
                         secureTextEntry
+                        onChangeText={setPassword}
                         />
 
                         <TouchableOpacity 
+                        onPress={handleforgotPassword}
                         style={styles.forgotPassowrdButton}>
                           <Text 
                           style={styles.forgotPassowrdLabel}>
@@ -60,8 +76,9 @@ export function SignIn() {
                         </TouchableOpacity>
 
                     <Button 
-                    title='Entrar' 
+                    title={isLoading ? <ActivityIndicator color={theme.COLORS.TITLE}/> : 'Entrar'} 
                     type='segundary'
+                    onPress={handleSignIn}
                     />
                 </ScrollView>
 

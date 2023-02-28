@@ -1,22 +1,21 @@
 import React from 'react';
 import { styles } from './styles';
-import { ActivityIndicator, Text } from 'react-native';
+import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { RectButton, RectButtonProps } from 'react-native-gesture-handler'
 import theme from '../../theme';
 
 export type TypeProps = 'primary' | 'segundary';
 
-type Props = RectButtonProps &{
-    title: string,
+type Props = TouchableOpacityProps &{
+    title: any,
     isLoading?: boolean;
     type?: TypeProps;
 }
 
 export function Button({type = 'primary', title, isLoading = false, ...rest}:Props) {
   return (
-    <RectButton 
+    <TouchableOpacity 
     {...rest}
-    enabled={!isLoading}
     style={{
         flex: 1,
         maxHeight: 56,
@@ -27,9 +26,8 @@ export function Button({type = 'primary', title, isLoading = false, ...rest}:Pro
         alignItems: 'center',
         backgroundColor: type === 'primary' ? theme.COLORS.SUCCESS_900 : theme.COLORS.PRIMARY_900,
     }}>
-        {isLoading ? <ActivityIndicator
-        color={theme.COLORS.TITLE}/> : <Text style={styles.title}>{title}</Text>}
+        <Text style={styles.title}>{title}</Text>
 
-    </RectButton>
+    </TouchableOpacity>
   );
 }
