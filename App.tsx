@@ -3,6 +3,7 @@ import React from 'react';
 import { SignIn } from './src/screens/SignIn';
 import { StatusBar } from 'react-native';
 import { AuthProvider } from './src/hooks/auth';
+import { Product } from './src/screens/Product';
 
 function App(): JSX.Element {
 
@@ -14,7 +15,7 @@ function App(): JSX.Element {
     backgroundColor='transparent'
     />
     <AuthProvider>
-    <SignIn/>
+    <Product/>
     </AuthProvider>
     </>
   );
