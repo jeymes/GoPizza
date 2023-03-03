@@ -6,16 +6,17 @@ import theme from '../../theme';
 export type TypeProps = 'Primary' | 'segundary';
 
 type Props = TextInputProps &{
-type: TypeProps
+type?: TypeProps;
+height?: number;
 }
 
-export function Input({type = 'Primary', ...rest}: Props) {
+export function Input({type = 'Primary', height = 56, ...rest}: Props) {
   return (
     <TextInput 
     {...rest}
     style={{
     width: '100%',
-    height: 56,
+    height: height,
     backgroundColor: 'transparent',
     borderRadius: 12,
     fontSize: 14,

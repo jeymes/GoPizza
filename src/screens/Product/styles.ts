@@ -39,5 +39,31 @@ header:{
  pickImageButton: {
     width: 90,
     marginLeft: 32,
+ },
+ form: {
+   width: '100%',
+   padding: 24,
+ },
+ label: {
+   marginBottom: 12,
+   fontSize: 14,
+   fontFamily: theme.FONTS.TEXT,
+   color: theme.COLORS.SECONDARY_900,
+ },
+ inputGroup: {
+   width: '100%',
+   marginBottom: 16,
+ },
+ inputGroupHeader: {
+   width: '100%',
+   flexDirection: 'row',
+   justifyContent: 'space-between',
+   alignItems: 'center',
+ },
+ masCharacters: {
+   fontSize: 10,
+   marginBottom: 12,
+   fontFamily: theme.FONTS.TEXT,
+   color: theme.COLORS.SECONDARY_900,
  }
 })
