@@ -4,6 +4,7 @@ import { SignIn } from './src/screens/SignIn';
 import { StatusBar } from 'react-native';
 import { AuthProvider } from './src/hooks/auth';
 import { Product } from './src/screens/Product';
+import { Home } from './src/screens/Home';
 
 function App(): JSX.Element {
 
@@ -15,7 +16,7 @@ function App(): JSX.Element {
     backgroundColor='transparent'
     />
     <AuthProvider>
-    <Product/>
+    <Home/>
     </AuthProvider>
     </>
   );
