@@ -25,6 +25,7 @@ export function Button({type = 'primary', title, isLoading = false, ...rest}:Pro
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: type === 'primary' ? theme.COLORS.SUCCESS_900 : theme.COLORS.PRIMARY_900,
+        
     }}>
         <Text style={styles.title}>{title}</Text>
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { 
   Text, 
   KeyboardAvoidingView, 
@@ -20,11 +20,14 @@ import { SearchPizzas } from '../../components/SearchPizzas';
 import { ProductCard, ProductProps } from '../../components/ProductCard';
 
 import firestore from '@react-native-firebase/firestore'
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 export function Home() {
 
   const [pizzas, setPizzas] = useState<ProductProps[]>([])
   const [search, setSearch] = useState('')
+
+  const navigation = useNavigation();
 
 
   function FetchPizzas(value: string){
@@ -58,10 +61,18 @@ export function Home() {
     FetchPizzas('');
   }
 
+  function handleOpen(id: string){
+    navigation.navigate('product', { id })
+  }
 
-  useEffect(() => {
+  function handleAdd() {
+    navigation.navigate('product', {})
+  }
+
+
+  useFocusEffect(useCallback(() => {
     FetchPizzas('')
-  }, [])
+  }, []));
 
   return (
     <KeyboardAvoidingView 
@@ -102,13 +113,17 @@ export function Home() {
           Cardápio
         </Text>
         <Text 
-        style={styles.menuItemsNumber} > 10 Pizzas</Text>
+        style={styles.menuItemsNumber} > {pizzas.length} Pizzas</Text>
       </View>
 
       <FlatList
       data={pizzas}
       keyExtractor={item => item.id}
-      renderItem={({ item }) => <ProductCard data={item}/>}
+      renderItem={({ item }) => (
+      <ProductCard 
+      onPress={() => handleOpen(item.id)}
+      data={item}
+      />)}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{
         paddingTop: 20,
@@ -116,6 +131,12 @@ export function Home() {
         paddingHorizontal: 24
       }}
       />
+
+      <TouchableOpacity 
+      onPress={handleAdd}
+      style={styles.newProductButton} >
+      <Text style={styles.titleButton}>Cadastrar Pizza</Text>
+      </TouchableOpacity>
 
     </KeyboardAvoidingView>
   );

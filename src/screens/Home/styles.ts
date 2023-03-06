@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 import theme from '../../theme';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { getBottomSpace, getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { Button } from '../../components/Button';
 
 export const styles = StyleSheet.create({
     container: {
@@ -53,5 +54,22 @@ export const styles = StyleSheet.create({
         lineHeight: 20,
         fontFamily: theme.FONTS.TITLE,
         color: theme.COLORS.SECONDARY_900,
-     }
+     },
+     newProductButton:{
+        flex: 1,
+        maxHeight: 56,
+        minHeight: 56,
+        width: '88%',
+        borderRadius: 12,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: theme.COLORS.PRIMARY_900,
+        marginBottom: getBottomSpace() + 12,
+        marginLeft: 24,
+     },
+     titleButton: {
+        color: theme.COLORS.TITLE,
+        fontSize: 14,
+        fontFamily: theme.FONTS.TEXT,
+    },
 })
