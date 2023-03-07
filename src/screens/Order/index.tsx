@@ -21,6 +21,7 @@ type PizzaResponse = ProductProps & {
 prices_sizes: {
   [key: string] : number;
 }
+photo_url: string
 }
 
 export function Order() {
