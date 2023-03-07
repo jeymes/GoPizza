@@ -1,7 +1,6 @@
 import React from 'react';
 import { styles } from './styles';
 import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
-import { RectButton, RectButtonProps } from 'react-native-gesture-handler'
 import theme from '../../theme';
 
 export type TypeProps = 'primary' | 'segundary';

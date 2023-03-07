@@ -22,10 +22,16 @@ import { ProductCard, ProductProps } from '../../components/ProductCard';
 import firestore from '@react-native-firebase/firestore'
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
+import { useAuth } from '../../hooks/auth';
+
 export function Home() {
+
+  const { signOut, user } = useAuth();
 
   const [pizzas, setPizzas] = useState<ProductProps[]>([])
   const [search, setSearch] = useState('')
+  const [name, setName] = useState('')
+
 
   const navigation = useNavigation();
 
@@ -62,7 +68,8 @@ export function Home() {
   }
 
   function handleOpen(id: string){
-    navigation.navigate('product', { id })
+    const route = user?.isAdmin ? 'product' : 'order';
+    navigation.navigate(route, {id});
   }
 
   function handleAdd() {
@@ -87,10 +94,16 @@ export function Home() {
           <Image 
           source={happyEmoji}
           style={styles.greetingEmoji} />
-          <Text style={styles.greetingText} >Olá, Admin</Text>
+          <Text style={styles.greetingText} >Olá, 
+          {
+            user?.isAdmin ? "Admin" : "Garçon"
+          }
+          </Text>
         </View>
 
-        <TouchableOpacity>
+        <TouchableOpacity
+        onPress={signOut}
+        >
           <LogOut 
           width={24}
           height={24}
@@ -132,11 +145,14 @@ export function Home() {
       }}
       />
 
-      <TouchableOpacity 
+      {
+        user?.isAdmin &&
+        <TouchableOpacity 
       onPress={handleAdd}
       style={styles.newProductButton} >
       <Text style={styles.titleButton}>Cadastrar Pizza</Text>
       </TouchableOpacity>
+      }
 
     </KeyboardAvoidingView>
   );
